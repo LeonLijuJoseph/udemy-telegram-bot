@@ -75,7 +75,7 @@ def check_reminders():
                 dataSource.fire_reminder(reminder_data.reminder_id)
                 updater.bot.send_message(reminder_data.chat_id, reminder_data.message)
         time.sleep(INTERVAL)
-        print("checking reminders")
+
 
 
 if __name__ == '__main__':
