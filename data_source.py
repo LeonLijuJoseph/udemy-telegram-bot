@@ -77,7 +77,6 @@ class DataSource:
         try:
             conn = self.get_connection()
             cur = conn.cursor()
-            print(chat_id)
             cur.execute(INSERT_REMINDER_STATEMENT, (chat_id, message, time,))
             row = cur.fetchone()
             cur.close()

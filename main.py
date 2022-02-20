@@ -37,18 +37,22 @@ else:
 def start_handler(update, context):
     update.message.reply_text("Hello Leon", reply_markup=add_reminder_button())
 
+
 def add_reminder_button():
     keyboard = [[KeyboardButton(ADD_REMINDER_TEXT)]]
     return ReplyKeyboardMarkup(keyboard)
+
 
 def add_reminder_handler(update: Update, context: CallbackContext):
     update.message.reply_text("Please enter the reminder name")
     return ENTER_MESSAGE
 
+
 def enter_message_handler(update: Update, context: CallbackContext):
     update.message.reply_text("Please enter a time for the reminder")
     context.user_data["message_text"] = update.message.text
     return ENTER_TIME
+
 
 def enter_time_handler(update: Update, context: CallbackContext):
     message_text = context.user_data["message_text"]
@@ -71,6 +75,7 @@ def check_reminders():
                 dataSource.fire_reminder(reminder_data.reminder_id)
                 updater.bot.send_message(reminder_data.chat_id, reminder_data.message)
         time.sleep(INTERVAL)
+        print("checking reminders")
 
 
 if __name__ == '__main__':
